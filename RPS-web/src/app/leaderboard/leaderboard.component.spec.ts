@@ -100,5 +100,12 @@ describe('LeaderboardComponent', () => {
       
     });
   });
+  it('should round off precents by the nearest tenth', () => {
+    expect(component).toBeTruthy();
+    let tableRows = fixture.nativeElement.querySelectorAll('tr');
+    let row1 = tableRows[1];
+    
+
+  })
 
 });
