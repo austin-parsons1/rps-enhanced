@@ -24,7 +24,7 @@ public class DatabaseGameResultIdProvider implements GameResultIdProvider {
 
         List<Integer> seq = jdbcTemplate.query( "select nextval('GameResultIdSeq') val", new SeqRowMapper());
 
-        return seq.get(0);
+        return seq.get(0); 
     }
 
     public class SeqRowMapper implements RowMapper

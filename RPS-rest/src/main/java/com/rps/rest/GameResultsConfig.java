@@ -3,8 +3,11 @@ package com.rps.rest;
 import com.rps.core.*;
 import com.rps.persistence.DatabaseGameResultRepository;
 import com.rps.persistence.DatabasePlayerRepository;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 
 @Configuration
