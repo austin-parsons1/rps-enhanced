@@ -174,12 +174,13 @@ describe('GameComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('SCISSORS');
-      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Black Panther');
+      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Player 1');
       expect(stubRpsGateway.playGameCalledWith.player1.id).toBe(1);
   
       expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
-      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Cat Woman');
+      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 3');
       expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
+      
       expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Cat Woman Wins');
   
     });
