@@ -103,9 +103,29 @@ describe('LeaderboardComponent', () => {
   it('should round off precents by the nearest tenth', () => {
     expect(component).toBeTruthy();
     let tableRows = fixture.nativeElement.querySelectorAll('tr');
-    let row1 = tableRows[1];
-    
+    let row2 = tableRows[1];
+    expect(row2.cells[1].innerHTML).toBe('100%');
+    expect(row2.cells[2].innerHTML).toBe('3');
+    expect(row2.cells[3].innerHTML).toBe('2');
+    expect(row2.cells[4].innerHTML).toBe('0');
 
-  })
+
+    stubRpsGateway.playerStats[0].gamesWon = 2 ;
+    stubRpsGateway.playerStats[0].winPercentage = 66.666 ; 
+    stubRpsGateway.playerStats[0].rockPercent = 33.333 ;
+    const refresh = fixture.nativeElement.querySelector('button.refresh');
+    refresh.click();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      let tableRows = fixture.nativeElement.querySelectorAll('tr');
+      let row1 = tableRows[1];
+      expect(row1.cells[3].innerHTML).toBe('2');
+      expect(row1.cells[1].innerHTML).toBe('66.7%');
+      expect(row1.cells[6].innerHTML).toBe('33.3%');
+      
+    });
+
+  });
 
 });
