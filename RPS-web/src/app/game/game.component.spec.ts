@@ -9,6 +9,7 @@ import { GameGateway } from './game.gateway';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Outcome } from './game';
+import { trigger } from '@angular/animations';
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -123,6 +124,7 @@ describe('GameComponent', () => {
       expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
       expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain(stubRpsGateway.stubOutcome);
     });
+    
   }));
 
   it('should process a practice game through the gateway', async(() => {
@@ -154,5 +156,32 @@ describe('GameComponent', () => {
     const submitPracticeFlipped = fixture.nativeElement.querySelector('#submit-practice');
     expect(submitPracticeFlipped.disabled).toBeTruthy();
     expect(submitRankedFlipped).toBeFalsy();
-  })
+  });
+
+  it('should return winner as the players name', async(() => {
+    component.ngOnInit();
+    component.isPracticeGame =false;
+    fixture.detectChanges();
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+  
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 1);
+  
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    submit.click();
+  
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('SCISSORS');
+      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Player 1');
+      expect(stubRpsGateway.playGameCalledWith.player1.id).toBe(1);
+  
+      expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
+      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 2');
+      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(2);
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Cat Woman Wins');
+  
+    });
+  }));
 });
