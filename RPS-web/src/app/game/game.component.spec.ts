@@ -166,7 +166,7 @@ describe('GameComponent', () => {
     triggerMatSelect('player1Name', 0);
   
     triggerMatSelect('player2Throw', 1);
-    triggerMatSelect('player2Name', 1);
+    triggerMatSelect('player2Name', 2);
   
     const submit = fixture.nativeElement.querySelector('#submit-ranked');
     submit.click();
@@ -174,12 +174,12 @@ describe('GameComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('SCISSORS');
-      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Player 1');
+      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Black Panther');
       expect(stubRpsGateway.playGameCalledWith.player1.id).toBe(1);
   
       expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
-      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 2');
-      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(2);
+      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Cat Woman');
+      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
       expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Cat Woman Wins');
   
     });
