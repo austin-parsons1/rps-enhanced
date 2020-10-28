@@ -26,14 +26,14 @@
       <ng-container >
         <tr *ngFor="let playerStat of playerStats"  >
           <td> <button (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
-          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage | number: '1.0-1'}}%</td>
+          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage | number: '1.0-1'}}</td>
           <td>{{playerStat.gamesPlayed}}</td>
           <td>{{playerStat.gamesWon}}</td>
           <td>{{playerStat.gamesLost}}</td>
           <td>{{playerStat.gamesTied}}</td>
-          <td>{{playerStat.rockPercent | number: '1.0-1'}}%</td>
-          <td>{{playerStat.paperPercent | number:'1.0-1' }}%</td>
-          <td>{{playerStat.scissorsPercent | number: '1.0-1'}}%</td>
+          <td>{{playerStat.rockPercent | number: '1.0-1'}}</td>
+          <td>{{playerStat.paperPercent | number:'1.0-1' }}</td>
+          <td>{{playerStat.scissorsPercent | number: '1.0-1'}}</td>
         </tr>
       </ng-container>
       
