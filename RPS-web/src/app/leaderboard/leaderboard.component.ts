@@ -29,6 +29,7 @@ export class LeaderboardComponent implements OnInit {
     if( playerId === -1 ) {
       this.getPlayerStats();
     } else {
+      this.getPlayerStats();
       this.getGameRecords();
     }
 

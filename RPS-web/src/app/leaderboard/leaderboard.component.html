@@ -25,7 +25,7 @@
       </tr>
       <ng-container >
         <tr *ngFor="let playerStat of playerStats"  >
-          <td> <button (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
+          <td> <button class="playerLeaderboard" (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
           <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage | number: '1.0-1'}}</td>
           <td>{{playerStat.gamesPlayed}}</td>
           <td>{{playerStat.gamesWon}}</td>
@@ -42,20 +42,36 @@
 </ng-container>
 
 <ng-container *ngIf="selectedPlayer != -1">
+  
   <table class="tg">
     <tr>
+      <th class="tg-w3z3">Current Player</th>
       <th class="tg-w3z3">Opponent</th>
       <th class="tg-w3z3">Result</th>
       <th class="tg-w3z3">Player Throw</th>
       <th class="tg-w3z3">Opponent Throw</th>
     </tr>
-    <ng-container >
-      <tr *ngFor="let gameRecord of gameRecords"  >
+    <ng-container playerStat = playerStats >
+      <tr *ngFor="let gameRecord of gameRecords"  > 
+        <td>{{gameRecord.player.name}}</td>
         <td>{{gameRecord.opponent.name}}</td>
         <td>{{gameRecord.result}}</td>
         <td>{{gameRecord.playerThrow}}</td>
         <td>{{gameRecord.opponentThrow}}</td>
+
       </tr>
+      <tr>
+        <th class="tg-w3z3">Winning Percentage</th>
+        <th class="tg-w3z3">Rocks Thrown (%)</th>
+        <th class="tg-w3z3">Papers Thrown (%)</th>
+        <th class="tg-w3z3">Scissors Thrown (%)</th>
+    </tr>
+      <tr>
+      <td class="ps-winpercent-{{playerStats.player.id}}" >{{playerStat.winPercentage | number: '1.0-1'}}</td>
+      <td>{{playerStats.rockPercent | number: '1.0-1'}}</td>
+      <td>{{playerStats.paperPercent | number:'1.0-1' }}</td>
+      <td>{{playerStats.scissorsPercent | number: '1.0-1'}}</td>
+    </tr> 
     </ng-container>
     
   </table>

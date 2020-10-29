@@ -123,4 +123,27 @@ describe('LeaderboardComponent', () => {
 
   });
 
+  it('should display player name and percentages', () => {
+    expect(component).toBeTruthy();
+    let tableRows = fixture.nativeElement.querySelectorAll('tr');
+
+    stubRpsGateway.getPlayerGameRecords[0].player = 'Cat Woman' ;
+    stubRpsGateway.getPlayerGameRecords[0].opponent = 'Deadpool' ;
+    stubRpsGateway.getPlayerGameRecords[0].result = 'WON' ;
+    stubRpsGateway.getPlayerGameRecords[0].playerThrow = 'ROCK' ;
+    stubRpsGateway.getPlayerGameRecords[0].opponentThrow = 'PAPER' ;
+    
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      let tableRows = fixture.nativeElement.querySelectorAll('tr');
+      let row1 = tableRows[2];
+      expect(row1.cells[0].innerHTML).toBe('Cat Woman');
+      expect(row1.cells[1].innerHTML).toBe('Deadpool');
+      expect(row1.cells[2].innerHTML).toBe('Won');
+      
+    });
+
+  });
+
 });
