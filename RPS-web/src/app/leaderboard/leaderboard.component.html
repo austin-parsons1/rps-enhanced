@@ -1,7 +1,5 @@
 <div class="leaderboard-container">
-<p>
-  LEADER BOARD
-</p>
+
 <style type="text/css">
   .tg  {border-collapse:collapse;border-spacing:0;}
   .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
@@ -11,6 +9,9 @@
   </style>
   
   <ng-container *ngIf="selectedPlayer === -1">
+    <h1>
+      LEADER BOARD
+    </h1>
     <table class="tg">
       <tr>
         <th class="tg-w3z3">Player</th>
@@ -42,7 +43,9 @@
 </ng-container>
 
 <ng-container *ngIf="selectedPlayer != -1">
-  
+  <h1>
+    {{selectedPlayerStats.player.name}} LEADER BOARD
+  </h1>
   <table class="tg">
     <tr>
       <th class="tg-w3z3">Current Player</th>
@@ -60,6 +63,8 @@
         <td>{{gameRecord.opponentThrow}}</td>
 
       </tr>
+    </ng-container>
+    <ng-container >
       <tr>
         <th class="tg-w3z3">Winning Percentage</th>
         <th class="tg-w3z3">Rocks Thrown (%)</th>
@@ -67,11 +72,10 @@
         <th class="tg-w3z3">Scissors Thrown (%)</th>
     </tr>
       <tr>
-      <td class="ps-winpercent-{{playerStats.player.id}}" >{{playerStat.winPercentage | number: '1.0-1'}}</td>
-      <td>{{playerStats.rockPercent | number: '1.0-1'}}</td>
-      <td>{{playerStats.paperPercent | number:'1.0-1' }}</td>
-      <td>{{playerStats.scissorsPercent | number: '1.0-1'}}</td>
-      <td>{{playerStats}}</td>
+      <td class="ps-winpercent-{{selectedPlayerStats.player.id}}" >{{selectedPlayerStats.winPercentage | number: '1.0-1'}}</td>
+      <td>{{selectedPlayerStats.rockPercent | number: '1.0-1'}}</td>
+      <td>{{selectedPlayerStats.paperPercent | number:'1.0-1' }}</td>
+      <td>{{selectedPlayerStats.scissorsPercent | number: '1.0-1'}}</td>
     </tr> 
     </ng-container>
     
