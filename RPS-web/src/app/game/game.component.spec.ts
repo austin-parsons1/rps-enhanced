@@ -122,7 +122,7 @@ describe('GameComponent', () => {
       expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
       expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 3');
       expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
-      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain(stubRpsGateway.stubOutcome);
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Player 3 Wins');
     });
     
   }));
@@ -158,7 +158,7 @@ describe('GameComponent', () => {
     expect(submitRankedFlipped).toBeFalsy();
   });
 
-  it('should return winner as the players name', async(() => {
+  it('should return winner as the players name', () => {
     component.ngOnInit();
     component.isPracticeGame =false;
     fixture.detectChanges();
@@ -181,8 +181,8 @@ describe('GameComponent', () => {
       expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 3');
       expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
       
-      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Cat Woman Wins');
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Player 3 Wins');
   
     });
-  }));
+  });
 });
