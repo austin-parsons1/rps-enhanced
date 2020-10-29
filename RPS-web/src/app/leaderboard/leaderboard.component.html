@@ -51,7 +51,7 @@
       <th class="tg-w3z3">Player Throw</th>
       <th class="tg-w3z3">Opponent Throw</th>
     </tr>
-    <ng-container playerStat = playerStats >
+    <ng-container >
       <tr *ngFor="let gameRecord of gameRecords"  > 
         <td>{{gameRecord.player.name}}</td>
         <td>{{gameRecord.opponent.name}}</td>
@@ -71,6 +71,7 @@
       <td>{{playerStats.rockPercent | number: '1.0-1'}}</td>
       <td>{{playerStats.paperPercent | number:'1.0-1' }}</td>
       <td>{{playerStats.scissorsPercent | number: '1.0-1'}}</td>
+      <td>{{playerStats}}</td>
     </tr> 
     </ng-container>
     
