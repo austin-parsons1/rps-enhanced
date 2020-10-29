@@ -1,46 +1,4 @@
 <div class="leaderboard-container">
-  <style type="text/css">
-    .tg {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-    .tg td {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      padding: 10px 5px;
-      border-style: solid;
-      border-width: 1px;
-      overflow: hidden;
-      word-break: normal;
-      border-color: black;
-    }
-    .tg th {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      font-weight: normal;
-      padding: 10px 5px;
-      border-style: solid;
-      border-width: 1px;
-      overflow: hidden;
-      word-break: normal;
-      border-color: black;
-    }
-    .tg .tg-w3z3 {
-      font-weight: bold;
-      font-size: 15px;
-      font-family: "Trebuchet MS", Helvetica, sans-serif !important;
-      text-align: left;
-      vertical-align: top;
-    }
-    .tg .tg-wt0f {
-      font-weight: bold;
-      font-size: 15px;
-      font-family: "Trebuchet MS", Helvetica, sans-serif !important;
-      text-align: left;
-      vertical-align: middle;
-    }
-  </style>
-
   <ng-container *ngIf="selectedPlayer === -1">
     <h1>LEADER BOARD</h1>
     <table class="tg">
@@ -95,7 +53,7 @@
         <tr *ngFor="let gameRecord of gameRecords">
           <td>{{ gameRecord.player.name }}</td>
           <td>{{ gameRecord.opponent.name }}</td>
-          <td *ngIf="gameRecord.result = 'WON'; then style="color: green;"" >{{ gameRecord.result }}</td>
+          <td [ngClass]="{greenClass: gameRecord.result === 'WON', redClass: gameRecord.result === 'LOSS'}">{{ gameRecord.result }}</td>
           <td>{{ gameRecord.playerThrow }}</td>
           <td>{{ gameRecord.opponentThrow }}</td>
         </tr>
