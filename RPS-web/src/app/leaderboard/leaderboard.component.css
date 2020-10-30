@@ -47,14 +47,20 @@ table {
   text-align: left;
   vertical-align: middle;
 }
-.color-green {
+.greenClass {
   color: green;
 }
 
-.color-blue {
+.blueClass {
   color: blue;
 }
 
-.color-red {
+.redClass{
   color: red;
+}
+.orangeClass{
+  color: orange;
+}
+.cyanClass{
+  color: cyan;
 }

@@ -114,13 +114,10 @@ describe("LeaderboardComponent", () => {
 
   it("should display player name and percentages", () => {
     expect(component).toBeTruthy();
-    let tableRows = fixture.nativeElement.querySelectorAll("tr");
 
-    // stubRpsGateway.getPlayerGameRecords[0].player = 'Cat Woman' ;
-    // stubRpsGateway.getPlayerGameRecords[0].opponent = 'Deadpool' ;
-    // stubRpsGateway.getPlayerGameRecords[0].result = 'WON' ;
-    // stubRpsGateway.getPlayerGameRecords[0].playerThrow = 'ROCK' ;
-    // stubRpsGateway.getPlayerGameRecords[0].opponentThrow = 'PAPER' ;
+    // stubRpsGateway.getPlayerGameRecords[0].result = 'WON';
+    // stubRpsGateway.getPlayerGameRecords[0].playerThrow = 'ROCK';
+    // stubRpsGateway.getPlayerGameRecords[0].opponentThrow = 'PAPER';
 
     const playerLeaderboard = fixture.nativeElement.querySelector(
       "button.playerLeaderboard"
@@ -130,10 +127,32 @@ describe("LeaderboardComponent", () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       let tableRows = fixture.nativeElement.querySelectorAll("tr");
+      let row1 = tableRows[3];
+      expect(row1.cells[0].innerHTML).toBe("Player 3");
+      expect(row1.cells[1].innerHTML).toBe("WON");
+      expect(row1.cells[2].innerHTML).toBe("ROCK");
+    });
+  });
+  it("should change font color based on outcome", () => {
+    expect(component).toBeTruthy();
+  
+    const playerLeaderboard = fixture.nativeElement.querySelector(
+      "button.playerLeaderboard"
+    );
+    playerLeaderboard.click();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      let tableRows = fixture.nativeElement.querySelectorAll("tr");
+      let h1 = fixture.nativeElement.querySelector('h1');
+      let el = fixture.nativeElement.querySelector('.redClass')
+      const content = el.textContent;
       let row1 = tableRows[2];
-      expect(row1.cells[0].innerHTML).toBe("Cat Woman");
-      expect(row1.cells[1].innerHTML).toBe("Deadpool");
-      expect(row1.cells[2].innerHTML).toBe("Won");
+      expect(h1.textContent).toContain('LEADER BOARD')
+      expect(row1.cells[1].innerHTML).toBe("LOSS");
+      expect(content).toContain('LOSS');
+
+
     });
   });
 });

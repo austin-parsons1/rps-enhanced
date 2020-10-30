@@ -14,25 +14,54 @@
         <th class="tg-w3z3">Scissors Thrown (%)</th>
       </tr>
       <ng-container>
+        <!-- 1 -->
         <tr *ngFor="let playerStat of playerStats">
           <td>
             <button
               class="playerLeaderboard"
               (click)="showPlayer(playerStat.player.id)"
-            >
-              {{ playerStat.player.name }}
-            </button>
+            >{{playerStat.player.name}}</button>
           </td>
-          <td class="ps-winpercent-{{ playerStat.player.id }}">
-            {{ playerStat.winPercentage | number: "1.0-1" }}
-          </td>
+          <td class="ps-winpercent-{{ playerStat.player.id }}">{{ playerStat.winPercentage | number: "1.0-1" }}</td>
           <td>{{ playerStat.gamesPlayed }}</td>
           <td>{{ playerStat.gamesWon }}</td>
           <td>{{ playerStat.gamesLost }}</td>
           <td>{{ playerStat.gamesTied }}</td>
-          <td>{{ playerStat.rockPercent | number: "1.0-1" }}</td>
-          <td>{{ playerStat.paperPercent | number: "1.0-1" }}</td>
-          <td>{{ playerStat.scissorsPercent | number: "1.0-1" }}</td>
+          <td
+            [ngClass]="{
+              redClass: playerStat.rockPercent >= 85,
+              orangeClass:
+                playerStat.rockPercent < 85 && playerStat.rockPercent >= 70,
+              blueClass: playerStat.rockPercent <= 15,
+              cyanClass:
+                playerStat.rockPercent > 15 && playerStat.rockPercent <= 30
+            }">{{ playerStat.rockPercent | number: "1.0-1" }}</td>
+          <td
+            [ngClass]="{
+              redClass: playerStat.paperPercent >= 85,
+              orangeClass:
+                playerStat.paperPercent < 85 && playerStat.paperPercent >= 70,
+              blueClass: playerStat.paperPercent <= 15,
+              cyanClass:
+                playerStat.paperPercent > 15 && playerStat.paperPercent <= 30
+            }"
+          >
+            {{ playerStat.paperPercent | number: "1.0-1" }}
+          </td>
+          <td
+            [ngClass]="{
+              redClass: playerStat.scissorsPercent >= 85,
+              orangeClass:
+                playerStat.scissorsPercent < 85 &&
+                playerStat.scissorsPercent >= 70,
+              blueClass: playerStat.scissorsPercent <= 15,
+              cyanClass:
+                playerStat.scissorsPercent > 15 &&
+                playerStat.scissorsPercent <= 30
+            }"
+          >
+            {{ playerStat.scissorsPercent | number: "1.0-1" }}
+          </td>
         </tr>
       </ng-container>
     </table>
@@ -42,24 +71,30 @@
   <ng-container *ngIf="selectedPlayer != -1">
     <h1>{{ selectedPlayerStats.player.name }} LEADER BOARD</h1>
     <table class="tg">
+      <!-- 2 -->
       <tr>
-        <th class="tg-w3z3">Current Player</th>
         <th class="tg-w3z3">Opponent</th>
         <th class="tg-w3z3">Result</th>
         <th class="tg-w3z3">Player Throw</th>
         <th class="tg-w3z3">Opponent Throw</th>
       </tr>
       <ng-container>
+        <!-- 3 -->
         <tr *ngFor="let gameRecord of gameRecords">
-          <td>{{ gameRecord.player.name }}</td>
           <td>{{ gameRecord.opponent.name }}</td>
-          <td [ngClass]="{greenClass: gameRecord.result === 'WON', redClass: gameRecord.result === 'LOSS'}">{{ gameRecord.result }}</td>
+          <td
+            [ngClass]="{
+              greenClass: gameRecord.result === 'WON',
+              redClass: gameRecord.result === 'LOSS',
+              blueClass: gameRecord.result === 'TIE'
+            }">{{ gameRecord.result }}</td>
           <td>{{ gameRecord.playerThrow }}</td>
           <td>{{ gameRecord.opponentThrow }}</td>
         </tr>
       </ng-container>
       <ng-container>
         <tr>
+          <!-- 4 -->
           <th class="tg-w3z3">Winning Percentage</th>
           <th class="tg-w3z3">Rocks Thrown (%)</th>
           <th class="tg-w3z3">Papers Thrown (%)</th>
