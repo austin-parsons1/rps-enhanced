@@ -185,4 +185,20 @@ describe('GameComponent', () => {
   
     });
   });
+  it('should disable button submit button when p1 and p2 are the same', () => {
+    component.ngOnInit();
+    component.isPracticeGame =false;
+    fixture.detectChanges();
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+  
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 0);
+    
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    fixture.detectChanges();
+    expect(submit.disabled).toBeTruthy();
+    
+  });
+
 });

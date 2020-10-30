@@ -55,7 +55,7 @@
 
   </div>
   <div class="row" >
-      <button id="submit-ranked" mat-raised-button color="primary" *ngIf="isPracticeGame === false" [disabled]="!gameForm.valid" (click)="processRankedGame()" class="submit-button">Submit</button>
+      <button id="submit-ranked" mat-raised-button color="primary" *ngIf="isPracticeGame === false" [disabled]="!gameForm.valid || this.getValue('selectedPlayer1') == getValue('selectedPlayer2')" (click)="processRankedGame()" class="submit-button">Submit</button>
       <button id="submit-practice" mat-raised-button color="primary" *ngIf="isPracticeGame === true" [disabled]="!gameForm.valid" (click)="processPracticeGame()" class="submit-button">Submit</button>
       <p id="game-outcome">{{mostRecentOutcome}}</p>
   
