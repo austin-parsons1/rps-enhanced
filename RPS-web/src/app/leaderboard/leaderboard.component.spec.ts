@@ -155,4 +155,36 @@ describe("LeaderboardComponent", () => {
 
     });
   });
+  it("should change font color based on thrown percents", () => {
+    expect(component).toBeTruthy();
+    let tableRows = fixture.nativeElement.querySelectorAll("tr");
+    console.log("tableRows: ", tableRows);
+    // Data rows
+    let row1 = tableRows[1];
+    expect(row1.cells[1].innerHTML).toBe("100");
+    expect(row1.cells[2].innerHTML).toBe("10");
+    expect(row1.cells[3].innerHTML).toBe("10");
+    expect(row1.cells[4].innerHTML).toBe("0");
+
+    stubRpsGateway.playerStats[0].gamesWon = 11;
+    stubRpsGateway.playerStats[0].winPercentage = 95;
+    stubRpsGateway.playerStats[0].rockPercent = 80;
+    const refresh = fixture.nativeElement.querySelector("button.refresh");
+    console.log("Button", refresh);
+    refresh.click();
+  
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      let tableRows = fixture.nativeElement.querySelectorAll("tr");
+      let h1 = fixture.nativeElement.querySelector('h1');
+      let el = fixture.nativeElement.querySelector('.orangeClass')
+      const content = el.textContent;
+      let row1 = tableRows[1];
+      expect(h1.textContent).toContain('LEADER BOARD')
+      expect(row1.cells[6].innerHTML).toBe("80");
+      expect(content).toContain('80');
+
+
+    });
+  });
 });
