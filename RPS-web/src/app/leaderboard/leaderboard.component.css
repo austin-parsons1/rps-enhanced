@@ -8,18 +8,6 @@
 table {
   margin: auto;
 }
-.color-green {
-  color: green;
-}
-
-.color-blue {
-  color: blue;
-}
-
-.color-red {
-  color: red;
-}
-
 .tg {
   border-collapse: collapse;
   border-spacing: 0;
@@ -58,4 +46,15 @@ table {
   font-family: "Trebuchet MS", Helvetica, sans-serif !important;
   text-align: left;
   vertical-align: middle;
+}
+.color-green {
+  color: green;
+}
+
+.color-blue {
+  color: blue;
+}
+
+.color-red {
+  color: red;
 }
